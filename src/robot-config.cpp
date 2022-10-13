@@ -5,7 +5,9 @@ using signature = vision::signature;
 using code = vision::code;
 
 // A global instance of brain used for printing to the V5 Brain screen
-brain  Brain;
+brain Brain;
+
+int turningSensitivity = 1;
 
 // VEXcode device constructors
 motor leftMotorA = motor(PORT1, ratio18_1, false);
@@ -33,8 +35,8 @@ int rc_auto_loop_function_Controller1() {
       // calculate the drivetrain motor velocities from the controller joystick axies
       // left = Axis3 + Axis1
       // right = Axis3 - Axis1
-      int drivetrainLeftSideSpeed = (Controller1.Axis3.position() + Controller1.Axis1.position()) / 6;
-      int drivetrainRightSideSpeed = (Controller1.Axis3.position() - Controller1.Axis1.position()) / 6;
+      int drivetrainLeftSideSpeed = (Controller1.Axis3.position() + Controller1.Axis1.position()) / (6 / turningSensitivity);
+      int drivetrainRightSideSpeed = (Controller1.Axis3.position() - Controller1.Axis1.position()) / (6 / turningSensitivity);
       
       // check if the value is inside of the deadband range
       if (drivetrainLeftSideSpeed < 5 && drivetrainLeftSideSpeed > -5) {

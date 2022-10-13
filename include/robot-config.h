@@ -6,6 +6,8 @@ extern brain Brain;
 extern drivetrain Drivetrain;
 extern controller Controller1;
 
+extern int turningSensitivity;
+
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
  * 
