@@ -23,6 +23,6 @@ int main() {
   vexcodeInit();
 
   // Customizations Initialization
-  
-  
+  turningSensitivity = 1;
+  Drivetrain.setStopping(hold);
 }
