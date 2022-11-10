@@ -19,7 +19,7 @@
 
 using namespace vex;
 
-void spinner_spins(bool out);
+void spins(bool out);
 
 int main()
 {
@@ -30,7 +30,8 @@ int main()
     turningSensitivity = 1;
     Drivetrain.setStopping(hold); // automatically account for inertia
 
-    Spinners.setVelocity(600, rpm);
+    Spinners.setVelocity(600, rpm)
+    Conveyor.setVelocity(200, rpm);
 
     // Variables
     bool dir = false;
@@ -43,18 +44,20 @@ int main()
                 dir = false;
             }
 
-            spinner_spins(dir);
+            spins(dir);
         }
         
         wait(20, msec);
     }
 }
 
-void spinner_spins(bool out)
+void spins(bool out)
 {
     if (out) {
         Spinners.spin(forward);
+        Conveyor.spin(forward);
     } else {
         Spinners.spin(reverse);
+        Conveyor.spin(reverse);
     }
 }

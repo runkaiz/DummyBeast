@@ -23,6 +23,8 @@ motor leftSpinner = motor(PORT5, ratio6_1, false);
 motor rightSpinner = motor(PORT6, ratio6_1, true);
 motor_group Spinners = motor_group(leftSpinner, rightSpinner);
 
+motor Conveyor = motor(PORT7, ratio18_1, false);
+
 // VEXcode generated functions
 // define variable for remote controller enable/disable
 bool RemoteControlCodeEnabled = true;
