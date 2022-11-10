@@ -45,6 +45,8 @@ int main()
 
             spinner_spins(dir);
         }
+        
+        wait(20, msec);
     }
 }
 

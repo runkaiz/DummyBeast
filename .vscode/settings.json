@@ -12,6 +12,8 @@
         "unordered_map": "cpp",
         "vector": "cpp",
         "__locale": "cpp",
-        "ios": "cpp"
+        "ios": "cpp",
+        "__mutex_base": "cpp",
+        "atomic": "cpp"
     }
 }
