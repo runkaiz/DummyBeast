@@ -19,14 +19,7 @@
 
 using namespace vex;
 
-void spinner_spins(bool out)
-{
-    if (out) {
-        Spinners.spin(forward);
-    } else {
-        Spinners.spin(reverse);
-    }
-}
+void spinner_spins(bool out);
 
 int main()
 {
@@ -55,3 +48,11 @@ int main()
     }
 }
 
+void spinner_spins(bool out)
+{
+    if (out) {
+        Spinners.spin(forward);
+    } else {
+        Spinners.spin(reverse);
+    }
+}
