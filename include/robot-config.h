@@ -5,6 +5,7 @@ extern brain Brain;
 // VEXcode devices
 extern drivetrain Drivetrain;
 extern controller Controller1;
+extern motor_group Spinners;
 
 extern int turningSensitivity;
 
