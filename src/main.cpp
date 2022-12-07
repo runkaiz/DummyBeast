@@ -40,9 +40,19 @@ int main()
 
     Spinners.setVelocity(600, rpm);
     Spinners.setStopping(brake);
+
     Conveyor.setVelocity(200, rpm);
 
     while (true) {
+        // Display
+        Brain.Screen.setCursor(1,1);
+        Brain.Screen.print("Drive train temp %f", Drivetrain.temperature(percent));
+        Brain.Screen.newLine();
+        Brain.Screen.print("Ramp temp %f", Conveyor.temperature(percent));
+        Brain.Screen.newLine();
+        Brain.Screen.print("Spinners temp %f", Spinners.temperature(percent));
+
+        // Movement
         Controller1.ButtonR1.pressed(spin);
         Controller1.ButtonR1.released(stop);
         
