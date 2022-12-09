@@ -21,11 +21,21 @@ using namespace vex;
 
 void spin() {
     Spinners.spin(forward);
+}
+
+void up() {
     Conveyor.spin(forward);
 }
 
-void stop() {
+void down() {
+    Conveyor.spin(reverse);
+}
+
+void stopSpinning() {
     Spinners.stop();
+}
+
+void stopBelt() {
     Conveyor.stop();
 }
 
@@ -53,8 +63,13 @@ int main()
         Brain.Screen.print("Spinners temp %f", Spinners.temperature(percent));
 
         // Movement
-        Controller1.ButtonR1.pressed(spin);
-        Controller1.ButtonR1.released(stop);
+        Controller1.ButtonR1.pressed(up);
+        Controller1.ButtonR1.released(stopBelt);
+        Controller1.ButtonR2.pressed(down);
+        Controller1.ButtonR2.released(stopBelt);
+
+        Controller1.ButtonL1.pressed(spin);
+        Controller1.ButtonL1.released(stopSpinning);
         
         wait(20, msec);
     }
