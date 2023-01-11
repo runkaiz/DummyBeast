@@ -56,6 +56,8 @@ int main()
     while (true) {
         // Display
         Brain.Screen.setCursor(1,1);
+        Brain.Screen.print("Let's go DummyBeast!");
+        Brain.Screen.newLine();
         Brain.Screen.print("Drive train temp %f", Drivetrain.temperature(percent));
         Brain.Screen.newLine();
         Brain.Screen.print("Ramp temp %f", Conveyor.temperature(percent));
