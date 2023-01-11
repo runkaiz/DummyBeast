@@ -19,6 +19,8 @@
 
 using namespace vex;
 
+competition Competition;
+
 void spin() {
     Spinners.spin(forward);
 }
@@ -39,20 +41,11 @@ void stopBelt() {
     Conveyor.stop();
 }
 
-int main()
-{
-    // Initializing Robot Configuration. DO NOT REMOVE!
-    vexcodeInit();
+void Autonomous() {
+    
+}
 
-    // Customizations
-    turningSensitivity = 3;
-    Drivetrain.setStopping(hold); // automatically account for inertia
-
-    Spinners.setVelocity(600, rpm);
-    Spinners.setStopping(brake);
-
-    Conveyor.setVelocity(200, rpm);
-
+void UserControl() {
     while (true) {
         // Display
         Brain.Screen.setCursor(1,1);
@@ -75,4 +68,23 @@ int main()
         
         wait(20, msec);
     }
+}
+
+int main()
+{
+    // Initializing Robot Configuration. DO NOT REMOVE!
+    vexcodeInit();
+
+    // Customizations
+    turningSensitivity = 3;
+    Drivetrain.setStopping(hold); // automatically account for inertia
+
+    Spinners.setVelocity(600, rpm);
+    Spinners.setStopping(brake);
+
+    Conveyor.setVelocity(200, rpm);
+
+    // Listen for Field Switch
+    Competition.drivercontrol(UserControl);
+    Competition.autonomous(Autonomous);
 }
