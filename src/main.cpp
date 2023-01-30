@@ -37,6 +37,18 @@ void up()
     }
 }
 
+void boostUp() {
+    Booster.spin(forward);
+}
+
+void boostDown() {
+    Booster.spin(reverse);
+}
+
+void boostStop() {
+    Booster.stop();
+}
+
 void down()
 {
     Conveyor.spin(reverse);
@@ -66,6 +78,17 @@ void toggleMode() {
 
 void Autonomous()
 {
+    Drivetrain.setDriveVelocity(60, percent);
+    Drivetrain.driveFor(forward, 50, mm, false);
+    down();
+    wait(0.5, sec);
+    stopBelt();
+    Drivetrain.driveFor(reverse, 25, mm, true);
+    Drivetrain.turnFor(left, 85, degrees, true);
+    Conveyor.spin(forward);
+    Drivetrain.driveFor(forward, 40, inches, true);
+    wait(2, sec);
+    Conveyor.stop();
 }
 
 void UserControl()
@@ -78,8 +101,8 @@ void UserControl()
         // calculate the drivetrain motor velocities from the controller joystick axies
         // left = Axis3 + Axis1
         // right = Axis3 - Axis1
-        int drivetrainLeftSideSpeed = (Controller1.Axis3.position() + Controller1.Axis1.position() / (6 / turningSensitivity));
-        int drivetrainRightSideSpeed = (Controller1.Axis3.position() - Controller1.Axis1.position() / (6 / turningSensitivity));
+        int drivetrainLeftSideSpeed = (Controller1.Axis3.position() + Controller1.Axis1.position() / (1.5));
+        int drivetrainRightSideSpeed = (Controller1.Axis3.position() - Controller1.Axis1.position() / (1.5));
 
         // check if the value is inside of the deadband range
         if (drivetrainLeftSideSpeed < 5 && drivetrainLeftSideSpeed > -5)
@@ -120,21 +143,13 @@ void UserControl()
         if (DrivetrainLNeedsToBeStopped_Controller1)
         {
             LeftDriveSmart.setVelocity(drivetrainLeftSideSpeed, percent);
-            if (shootingMode) {
-                LeftDriveSmart.spin(reverse);
-            } else {
-                LeftDriveSmart.spin(forward);
-            }
+            LeftDriveSmart.spin(forward);
         }
         // only tell the right drive motor to spin if the values are not in the deadband range
         if (DrivetrainRNeedsToBeStopped_Controller1)
         {
             RightDriveSmart.setVelocity(drivetrainRightSideSpeed, percent);
-            if (shootingMode) {
-                RightDriveSmart.spin(reverse);
-            } else {
-                RightDriveSmart.spin(forward);
-            }
+            RightDriveSmart.spin(forward);
         }
 
         // Display
@@ -158,6 +173,11 @@ void UserControl()
         Controller1.ButtonR2.pressed(down);
         Controller1.ButtonR2.released(stopBelt);
 
+        Controller1.ButtonL1.pressed(boostUp);
+        Controller1.ButtonL1.released(boostStop);
+        Controller1.ButtonL2.pressed(boostDown);
+        Controller1.ButtonL2.released(boostStop);
+
         wait(20, msec);
     }
 }
@@ -168,11 +188,11 @@ int main()
     vexcodeInit();
 
     // Customizations
-    turningSensitivity = 3;
-    //Drivetrain.setStopping(brake);
+    turningSensitivity = 2;
+    Drivetrain.setStopping(coast);
 
     leftSpinner.setVelocity(600, rpm);
-    rightSpinner.setVelocity(575, rpm);
+    rightSpinner.setVelocity(600, rpm);
     Spinners.setStopping(coast);
 
     Conveyor.setVelocity(200, rpm);
