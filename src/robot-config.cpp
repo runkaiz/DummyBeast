@@ -19,7 +19,7 @@ motor_group RightDriveSmart = motor_group(rightMotorA, rightMotorB);
 drivetrain Drivetrain = drivetrain(LeftDriveSmart, RightDriveSmart, 319.19, 406.4, 254, mm, 1);
 controller Controller1 = controller(primary);
 
-motor leftSpinner = motor(PORT9, ratio6_1, true);
+motor leftSpinner = motor(PORT8, ratio6_1, true);
 motor rightSpinner = motor(PORT2, ratio6_1, false);
 motor_group Spinners = motor_group(leftSpinner, rightSpinner);
 

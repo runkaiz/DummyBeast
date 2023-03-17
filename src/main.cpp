@@ -80,9 +80,9 @@ void Autonomous()
 {
     Drivetrain.setDriveVelocity(60, percent);
     Drivetrain.driveFor(forward, 50, mm, false);
-    down();
+    boostUp();
     wait(0.5, sec);
-    stopBelt();
+    boostStop();
     Drivetrain.driveFor(reverse, 25, mm, true);
     Drivetrain.turnFor(left, 85, degrees, true);
     Conveyor.spin(forward);
